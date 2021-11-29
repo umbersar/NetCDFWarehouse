@@ -11,8 +11,8 @@ import numpy as np
 import os
 from datetime import datetime as dt
 
-InputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\RAW NETCDF"
-OutputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\CSV FILES"
+InputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\RAW NETCDF\TEST"
+OutputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\E0 CSV"
         
 def Print_Duration(start_time, update):
     ''' Report the duration and progess throughout an iteration'''
@@ -45,35 +45,52 @@ for FileName in NClist:
     ShortName = getattr(getattr(DS, (DS.var_name)), "name")
     LongName = getattr(getattr(DS, (DS.var_name)), "long_name")
     OutputName = FileName.split('.')[0]
+    Year = int(FileName[-7:-3])
+    LeapYear = (Year % 4 == 0)
     Unit = getattr(getattr(DS, (DS.var_name)), "units")
-    
+        
     # Determine spatial dimensions from the first .nc file.
     if FileName == NClist[0]:
-        DimLon = len(DS.longitude.values)
-        DimLat = len(DS.latitude.values)
-        DimSpace = DimLon * DimLat
+        DimLon = DS.longitude.values
+        DimLat = DS.latitude.values
+        DimSpace = len(DimLon) * len(DimLat)
+        DimTimeStep = np.unique(np.diff(DS.time.values).astype('timedelta64[s]'))
         
+        # Check that timesteps are the same size throughout the file.
+        if len(DimTimeStep) !=1:
+            print("FILE SKIPPED: Inconsistent Timesteps")
+            continue
         StartTime1 = dt.now()
         print(StartTime1, " EXTRACTION STARTED ---------------------------")
+    
+    
+    # Check that the spatial dimensions and timestep are consistent with the other files
+    if FileName != NClist[0]:
+        if not(np.array_equal(DimLon, DS.longitude.values) or np.array_equal(DimLat, DS.latitude.values)):
+            print("FILE SKIPPED: different spatial dimensions from other files")
+            continue
         
+        if len(np.unique(np.diff(DS.time.values).astype('timedelta64[s]'))) != 1:
+            print("FILE SKIPPED: inconsistent timesteps")
+            continue
         
+        elif DimTimeStep != np.unique(np.diff(DS.time.values).astype('timedelta64[s]')):
+            print("FILE SKIPPED: different timestep from other files")
+            continue
+
+
     # Check if the file has already been extracted
     if (OutputName + ".csv") in os.listdir(OutputFolder):
-        print("FILE", FileName, "ALREADY EXTRACTED")
+        print("\n\tFILE", FileName, "ALREADY EXTRACTED\n")
+        continue
+        
         
     else:
-        # if not((DimLon = len(DS.longitude.values)) and \
-        #         (DimLat = len(DS.latitude.values)) and \
-        #          (DimTime = len(DS.time.values))):
-        #     raise
-        
-        # Print metadata
-        Print_Duration(FolderStartTime, ("\t EXTRACTING: " + FileName + " INTO CSV \n"))
-        
+        Print_Duration(FolderStartTime, ("EXTRACTING: " + FileName + " INTO CSV"))
         
         ST1 = dt.now()
         print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
-        DimTime = len(DS.time.values) #Due to leap years, this will not be consistent between files
+        DimTime = len(DS.time.values) 
         
         # Iterate through the file along the time dimension
         for step in range(DimTime):
@@ -107,6 +124,14 @@ for FileName in NClist:
                 Batch = np.append(Batch, DataStep)
                 BatchStep = BatchStep + 1
                 
+        # For non-leap years, this block inserts a days worth of NaN values just before March 1st, so that all outputs have the same dimensions.
+        # This simplifies many of the queries in SQL server.
+        if LeapYear == False: 
+            DayLength = int(np.timedelta64(1, 'D').astype('timedelta64[s]') / DimTimeStep.astype('timedelta64[s]')) * DimSpace
+            Feb29 = np.empty( DayLength)
+            Feb29[:] = np.nan
+            Full = np.insert(Full, (DayLength * (31+28)), Feb29)
+        
         # Convert to pandas DataFrame
         DF = pd.DataFrame({"VARIABLE":Full})
         Print_Duration(ST1, "NetCDF to DataFrame")
@@ -116,7 +141,8 @@ for FileName in NClist:
         DF.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, chunksize=100000, compression=None )
         Print_Duration(ST2, "DataFrame to CSV")
 
-        # Correct NULL value format, for input to SQL server
+        # Correct NULL value format, for input to SQL server:
+        # By default NaN is written to CSV as "", this block replaces them with a blank space
         ST3 = dt.now() 
         CSV = open((OutputFolder+"\\"+OutputName+".csv"), 'r')
         TXT = CSV.read()
@@ -126,33 +152,48 @@ for FileName in NClist:
         CSV.write(TXT)
         CSV.close()
         Print_Duration(ST3, "CSV cleaning")
-        Print_Duration(ST1, "Total Duration")
+        Print_Duration(ST1, "Total Duration\n")
+        DS.close()
   
     
-  
-DS = xr.open_dataset("e0_avg_1911.nc")  
-  
-# Repeat steps above to extract a single CSV for longitude and latitude positions corresponding to the data
+
+
+# Check if the Spatial Dimensions have already been extracted
+if ("DIM_SPACE.csv") in os.listdir(OutputFolder):
+    print("\n\t DIMENSIONS ALREADY EXTRACTED\n")
+    Print_Duration(FolderStartTime, ("\t EXTRACTION COMPLETED ---------------------------"))
+    exit()
+
+# Find a file from a leap year
+for FileName in NClist:
+    Year = int(FileName[-7:-3])
+    if (Year % 4 == 0):
+        break
+    
+# Repeat steps above to extract a single CSV for longitude and latitude positions corresponding to the data  
+DS = xr.open_dataset(InputFolder+"\\"+FileName) 
+
 Lon,Lat = np.meshgrid(DS.longitude.values, DS.latitude.values)
 Lon = Lon.flatten()
 Lat = Lat.flatten()
-# Print_Duration(FolderStartTime, ("\t EXTRACTING LAT & LON INTO CSV \n"))
+SpaceID = np.arange(len(Lon)) + 1
+Print_Duration(FolderStartTime, ("EXTRACTING LAT & LON INTO CSV"))
         
-# ST1 = dt.now()
-# print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
-DimTime = len(DS.time.values) #Due to leap years, this will not be consistent between files
-
+ST1 = dt.now()
+print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
+DimTime = len(DS.time.values) 
 Lon = np.tile(Lon, DimTime)
 Lat = np.tile(Lat, DimTime)
+SpaceID = np.tile(SpaceID, DimTime)
 
 # Convert to pandas DataFrame
-DF = pd.DataFrame({"LONGITUDE":Lon, "LATITUDE":Lat})
+DF = pd.DataFrame({"SPACEID":SpaceID, "LONGITUDE":Lon, "LATITUDE":Lat})
+Print_Duration(ST1, "NetCDF to DataFrame")
 
 # Write to CSV using built in function 
 ST2 = dt.now() 
-DF.to_csv(((OutputFolder+"\\Spatial_Dimension.csv")), index = False, chunksize=100000, compression=None )
+DF.to_csv(((OutputFolder+"\\DIM_SPACE.csv")), index = False, chunksize=100000, compression=None )
 Print_Duration(ST2, "DataFrame to CSV")
+Print_Duration(ST1, "Total Duration")
 
-
-# Print_Duration(ST1, "Total Duration")
-
+Print_Duration(FolderStartTime, ("EXTRACTION COMPLETED ---------------------------"))
