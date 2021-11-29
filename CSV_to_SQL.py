@@ -29,57 +29,104 @@ NClist = NClist[0:2]
         
 FolderStartTime = dt.now()
 
-for FileName in NClist:
+# for FileName in NClist:
     
-    Year = FileName[-8:-4]
-    VariableName = (FileName.split("_")[0])
-    SchemaName = VariableName.upper()
-    TableName = "Y"+Year
-    TableName_Full = "[{}].[{}]".format(SchemaName, TableName)     
-    ViewName = SchemaName+"_"+TableName
-    FilePath = InputFolder+"\\"+FileName
+#     Year = FileName[-8:-4]
+#     VariableName = (FileName.split("_")[0])
+#     SchemaName = VariableName.upper()
+#     TableName = "Y"+Year
+#     TableName_Full = "[{}].[{}]".format(SchemaName, TableName)     
+#     ViewName = SchemaName+"_"+TableName
+#     FilePath = InputFolder+"\\"+FileName
 
-    cursor.execute("DROP TABLE IF EXISTS {};".format(TableName_Full))
-    cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
-    CONNECT.commit()
+#     cursor.execute("DROP TABLE IF EXISTS {};".format(TableName_Full))
+#     cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
+#     CONNECT.commit()
     
-    cursor.execute("CREATE TABLE {} (\
-                    [DataID] INT IDENTITY(1,1), \
-                    [Variable] FLOAT \
-                    );".format(TableName_Full))
-    CONNECT.commit()
+#     cursor.execute("CREATE TABLE {} (\
+#                     [DataID] INT IDENTITY(1,1), \
+#                     [Variable] FLOAT \
+#                     );".format(TableName_Full))
+#     CONNECT.commit()
     
-    cursor.execute("CREATE VIEW {} (\
-                    [Variable]) AS \
-                        (SELECT [Variable] FROM {});".format(ViewName, TableName_Full))
-    CONNECT.commit()
+#     cursor.execute("CREATE VIEW {} (\
+#                     [Variable]) AS \
+#                         (SELECT [Variable] FROM {});".format(ViewName, TableName_Full))
+#     CONNECT.commit()
     
-    ST = dt.now()
-    print(ST, "EXECUTING")
-    cursor.execute("BULK INSERT {} \
-                    FROM '{}' \
-                    WITH( \
-                        FIRSTROW = 2, \
-                        FIELDTERMINATOR = ',', \
-                        ROWTERMINATOR = '\n', \
-                        KEEPNULLS \
-                        )".format(ViewName, FilePath))
+#     ST = dt.now()
+#     print(ST, "EXECUTING")
+#     cursor.execute("BULK INSERT {} \
+#                     FROM '{}' \
+#                     WITH( \
+#                         FIRSTROW = 2, \
+#                         FIELDTERMINATOR = ',', \
+#                         ROWTERMINATOR = '\n', \
+#                         KEEPNULLS \
+#                         )".format(ViewName, FilePath))
     
-    print(dt.now()-ST)
-    ST = dt.now()
-    print(ST, "COMMITTING")
-    CONNECT.commit()
-    print(dt.now()-ST)
+#     print(dt.now()-ST)
+#     ST = dt.now()
+#     print(ST, "COMMITTING")
+#     CONNECT.commit()
+#     print(dt.now()-ST)
     
-    cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
-    CONNECT.commit()
+#     cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
+#     CONNECT.commit()
+
+# ST = dt.now()
+# print(ST, "CLOSING CURSOR")
+# cursor.close()
+# print(dt.now()-ST)084246
+
+# ST = dt.now()
+# print(ST, "CLOSING CONNECT")
+# CONNECT.close()
+# print(dt.now()-ST)
+
+
+
+cursor.execute("CREATE SCHEMA [{}];".format("DIM"))
+
+FileName = "Spatial_Dimension.csv"
+SchemaName = "DIM"
+TableName = "SPACE"
+TableName_Full = "[{}].[{}]".format(SchemaName, TableName)       
+ViewName = SchemaName+"_"+TableName
+FilePath = InputFolder+"\\"+FileName
+
+cursor.execute("DROP TABLE IF EXISTS {};".format(TableName_Full))
+cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
+CONNECT.commit()
+
+cursor.execute("CREATE TABLE {} (\
+                [DataID] INT IDENTITY(1,1), \
+                [Latitude] DECIMAL(5,2) ,\
+                [Longitude] DECIMAL(5,2) ,\
+                );".format(TableName_Full))
+CONNECT.commit()
+
+cursor.execute("CREATE VIEW {} (\
+                [Latitude], [Longitude]) AS \
+                    (SELECT [Latitude], [Longitude] FROM {});".format(ViewName, TableName_Full))
+CONNECT.commit()
 
 ST = dt.now()
-print(ST, "CLOSING CURSOR")
-cursor.close()
+print(ST, "EXECUTING")
+cursor.execute("BULK INSERT {} \
+                FROM '{}' \
+                WITH( \
+                    FIRSTROW = 2, \
+                    FIELDTERMINATOR = ',', \
+                    ROWTERMINATOR = '\n', \
+                    KEEPNULLS \
+                    )".format(ViewName, FilePath))
+
+print(dt.now()-ST)
+ST = dt.now()
+print(ST, "COMMITTING")
+CONNECT.commit()
 print(dt.now()-ST)
 
-ST = dt.now()
-print(ST, "CLOSING CONNECT")
-CONNECT.close()
-print(dt.now()-ST)
+cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
+CONNECT.commit()
