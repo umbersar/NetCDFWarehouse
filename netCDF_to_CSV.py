@@ -156,44 +156,71 @@ for FileName in NClist:
         DS.close()
   
     
+# Find the earliest leap-year .nc file that was converted to CSV, to use for spatial and temporal dimensions  
+for FileName in os.listdir(OutputFolder):
+    if (FileName[-4:] == '.csv') and (FileName[-8:-4].isnumeric()) and ((int(FileName[-8:-4]) % 4) == 0):
+        FileName = (FileName.split('.')[0]) + ".nc"
+        break
+    
+# Check if the Spatial Dimensions have already been extracted
+if ("DIM_SPACE.csv") in os.listdir(OutputFolder):
+    print("\n\tSPATIAL DIMENSIONS ALREADY EXTRACTED\n")    
+else:
+# Repeat steps above to extract a single CSV for longitude and latitude positions corresponding to the data  
+    DS = xr.open_dataset(InputFolder+"\\"+FileName) 
+    
+    Lon,Lat = np.meshgrid(DS.longitude.values, DS.latitude.values)
+    Lon = Lon.flatten()
+    Lat = Lat.flatten()
+    SpaceID = np.arange(len(Lon)) + 1
+    Print_Duration(FolderStartTime, ("EXTRACTING LAT & LON INTO CSV"))
+            
+    ST1 = dt.now()
+    print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
+    DimTime = len(DS.time.values) 
+    Lon = np.tile(Lon, DimTime)
+    Lat = np.tile(Lat, DimTime)
+    SpaceID = np.tile(SpaceID, DimTime)
+    
+    # Convert to pandas DataFrame
+    DF = pd.DataFrame({"SPACEID":SpaceID, "LONGITUDE":Lon, "LATITUDE":Lat})
+    Print_Duration(ST1, "NetCDF to DataFrame")
+    
+    # Write to CSV using built in function 
+    ST2 = dt.now() 
+    DF.to_csv(((OutputFolder+"\\DIM_SPACE.csv")), index = False, compression=None )
+    DS.close()
+    Print_Duration(ST2, "DataFrame to CSV")
+    Print_Duration(ST1, "Total Duration")
 
 
 # Check if the Spatial Dimensions have already been extracted
-if ("DIM_SPACE.csv") in os.listdir(OutputFolder):
-    print("\n\t DIMENSIONS ALREADY EXTRACTED\n")
-    Print_Duration(FolderStartTime, ("\t EXTRACTION COMPLETED ---------------------------"))
-    exit()
+if ("DIM_TIME.csv") in os.listdir(OutputFolder):
+    print("\n\tTEMPORAL DIMENSIONS ALREADY EXTRACTED\n")
+else:
+    # Repeat steps above to extract a single CSV for generic month/day/hour/min/second positions corresponding to the data
+    Print_Duration(FolderStartTime, ("EXTRACTING MONTH AND DAY INTO CSV"))
+    DS = xr.open_dataset(InputFolder+"\\"+FileName) 
+    Date = np.repeat(DS.time.values, (len(DS.longitude.values) * len(DS.latitude.values)))
 
-# Find a file from a leap year
-for FileName in NClist:
-    Year = int(FileName[-7:-3])
-    if (Year % 4 == 0):
-        break
+    ST1 = dt.now()
+    print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
     
-# Repeat steps above to extract a single CSV for longitude and latitude positions corresponding to the data  
-DS = xr.open_dataset(InputFolder+"\\"+FileName) 
-
-Lon,Lat = np.meshgrid(DS.longitude.values, DS.latitude.values)
-Lon = Lon.flatten()
-Lat = Lat.flatten()
-SpaceID = np.arange(len(Lon)) + 1
-Print_Duration(FolderStartTime, ("EXTRACTING LAT & LON INTO CSV"))
-        
-ST1 = dt.now()
-print("\t STARTED: ", ST1.strftime("%H:%M:%S %p"))
-DimTime = len(DS.time.values) 
-Lon = np.tile(Lon, DimTime)
-Lat = np.tile(Lat, DimTime)
-SpaceID = np.tile(SpaceID, DimTime)
-
-# Convert to pandas DataFrame
-DF = pd.DataFrame({"SPACEID":SpaceID, "LONGITUDE":Lon, "LATITUDE":Lat})
-Print_Duration(ST1, "NetCDF to DataFrame")
-
-# Write to CSV using built in function 
-ST2 = dt.now() 
-DF.to_csv(((OutputFolder+"\\DIM_SPACE.csv")), index = False, chunksize=100000, compression=None )
-Print_Duration(ST2, "DataFrame to CSV")
-Print_Duration(ST1, "Total Duration")
-
+    # # Convert to pandas DataFrame
+    DF = pd.DataFrame({"DATE":Date})
+    DF["MONTH"] = pd.DatetimeIndex(DF['DATE']).month
+    DF["DAY"] = pd.DatetimeIndex(DF['DATE']).day
+    DF["HOUR"] = pd.DatetimeIndex(DF['DATE']).hour
+    DF["MINUTE"] = pd.DatetimeIndex(DF['DATE']).minute
+    DF["SECOND"] = pd.DatetimeIndex(DF['DATE']).second
+    DF = DF.drop(["DATE"], axis=1)
+    Print_Duration(ST1, "NetCDF to DataFrame")
+    
+    # Write to CSV using built in function 
+    ST2 = dt.now() 
+    DF.to_csv(((OutputFolder+"\\DIM_TIME.csv")), index = False, compression=None )
+    DS.close()
+    Print_Duration(ST2, "DataFrame to CSV")
+    Print_Duration(ST1, "Total Duration")
+    
 Print_Duration(FolderStartTime, ("EXTRACTION COMPLETED ---------------------------"))
