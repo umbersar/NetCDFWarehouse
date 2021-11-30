@@ -102,6 +102,9 @@ for FileName in CSVlist:
                             )".format(ViewName, FilePath))
         CONNECT.commit()
         
+        cursor.execute("ALTER TABLE {} ADD [Year] SMALLINT DEFAULT {} NOT NULL".format(TableName_Full, Year))
+        CONNECT.commit()
+        
         # Delete the view, as changed are automatically in the table now
         cursor.execute("DROP VIEW IF EXISTS {};".format(ViewName))
         CONNECT.commit()
