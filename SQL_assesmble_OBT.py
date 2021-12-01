@@ -43,11 +43,11 @@ BatchSize = 1
 
 
 # Check whether the dimensions table exists
+T1 = dt.now()
 if not Table_Exists("DIMENSION", "ALL"):
     
     # If the constituent space and time dimension tables exist, join them
     if (Table_Exists("DIMENSION", "TIME") and Table_Exists("DIMENSION", "SPACE")):
-        T1 = dt.now()
         cursor.execute("\
                        ;WITH [COORDINATE_TABLE] ([DataID], [Month], [Day], [SpaceID], [Latitude], [Longitude])  AS ( \
                            SELECT [DS].[DataID], [Month], [Day], [SpaceID], [Latitude], [Longitude] \
@@ -62,7 +62,7 @@ if not Table_Exists("DIMENSION", "ALL"):
                         FROM [COORDINATE_TABLE];\
                         ")
         CONNECT.commit()
-        Print_Duration(T1, "\t[DIMENSION].[ALL] created")
+        Print_Duration(T1, "[DIMENSION].[ALL] created")
         
     # Otherwise end the script and return an error
     else:
@@ -80,7 +80,6 @@ if not Table_Exists("DIMENSION", "ALL"):
 DBTables = []
 #Extract a list of all tables within each schema
 for SchemaName in TargetSchema:
-    print(SchemaName)
     cursor.execute("\
             SELECT * FROM [information_schema].[tables] \
             WHERE TABLE_SCHEMA = '{}'".format(SchemaName))
@@ -102,20 +101,93 @@ for SchemaIndex in range(len(DBTables)):
     else:
         DF2 = pd.DataFrame({"Year":Year, TargetSchema[SchemaIndex]:TableName})
         DF =  DF.join(DF2.set_index('YEAR'), on="YEAR", how="inner")
-DF = DF.sort_values("Year", ignore_index=True)        
+DF = DF.sort_values("Year", ignore_index=True)
+
+Print_Duration(T1, "Tables to be joined:")        
+print(DF)
 
 
+
+# To avoid writing over an existing OBT
+Version = 1
+while Table_Exists("OBT", "V"+str(Version)):
+    Version = Version + 1
+   
+ColumnString = ""
+for SchemaName in TargetSchema:
+    ColumnString = ColumnString + " [{}] FLOAT,".format(SchemaName)
+# print(ColumnString)
+# print("[OBT].[V{}]".format(Version))
+# print("COLUMNSTORE_OBT_V{}".format(Version))
+print("\n\tInto [OBT].[V{}]\n".format(Version))
+    
+cursor.execute("CREATE TABLE {} (\
+                    [DataID] INT , \
+                    [Year] SMALLINT, \
+                    [Month] TINYINT, \
+                    [Day] TINYINT, \
+                    [SpaceID] INT, \
+                    [Longitude] DECIMAL(5,2),\
+                    [Latitude] DECIMAL(5,2),\
+                    {}\
+                    INDEX {} CLUSTERED COLUMNSTORE \
+                    );".format("[OBT].[V{}]".format(Version), ColumnString, "COLUMNSTORE_OBT_V{}".format(Version)))
+    # [Hour] TINYINT, \
+    # [Minute] TINYINT, \
+    # [Second] TINYINT, \
+CONNECT.commit()
+
+T2 = dt.now()
+print("\t ASSEMBLY STARTED: ", T2.strftime("%H:%M:%S %p"))
 for index, row in DF.iterrows():
-    # TableName = row['TableName']
-    print(row)
+    JoinString = ""
+    SelectString = ""
     
-#     # JOIN TO DIMENSION TABLE
-    
-#     # UNION TO EXISTING SET
+    for SchemaName in TargetSchema:
+        JoinString = JoinString + "JOIN {} ON [DIM].[DataID] = {}.[DataID] \n".format(row[SchemaName], row[SchemaName])
+        SelectString = SelectString + ", {}.[Variable] AS {} ".format(row[SchemaName], SchemaName)
         
+#     print("\nINSERT INTO {} \n\
+# SELECT \n\
+# [DIM].[DataID], \
+# {}.[Year], \
+# [Month], \
+# [Day], \
+# [SpaceID], \
+# [Latitude], \
+# [Longitude] \
+# {} \n\
+# FROM ( \n\
+# [DIMENSION].[ALL] AS [DIM] \n\
+# {}\
+#       )".format("[OBT].[V{}]".format(Version), row[TargetSchema[0]], SelectString, JoinString))
+            
+    cursor.execute("INSERT INTO {} \
+                   SELECT \
+                       [DIM].[DataID], \
+                       {}.[Year], \
+                       [Month], \
+                       [Day], \
+                       [SpaceID], \
+                       [Latitude], \
+                       [Longitude] \
+                       {}\
+                   FROM ( \
+                       [DIMENSION].[ALL] AS [DIM] \n\
+                       {}\
+                        )".format("[OBT].[V{}]".format(Version), row[TargetSchema[0]], SelectString, JoinString))
+    CONNECT.commit() 
+    Print_Duration(T1, ("Year " + str(row["Year"]) + " Inserted"))    
+        
+    if ((index + 1) % 4) == 0:
+        T3 = dt.now()
+        Progress = 100 * ((index + 1) / len(DF))
+        print("\tPROGRESS: {:.2f}% at {}".format(Progress, T3.strftime("%H:%M:%S %p")))
+print("\tCOMPLETED at {}".format(T3.strftime("%H:%M:%S %p")))
+Print_Duration(T1, "Total Duration")   
+        
+    
 
-# A = pd.DataFrame({"YEAR":[1, 2, 3, 4, 5], "TEXT1":['A1', 'B1', 'C1', 'D1', 'E1']})
-# B = pd.DataFrame({"YEAR":[3, 4, 5, 6, 7], "TEXT2":['C2', 'D2', 'E2', 'F2', 'G2']})
         
     
         
