@@ -168,7 +168,6 @@ for FileName in CSVlist:
         elif "TIME" in TableName.upper():
             cursor.execute("CREATE TABLE {} (\
                                 [DataID] INT IDENTITY(1,1), \
-                                [Year] SMALLINT, \
                                 [Month] TINYINT, \
                                 [Day] TINYINT, \
                                 [Hour] TINYINT, \
@@ -176,6 +175,7 @@ for FileName in CSVlist:
                                 [Second] TINYINT, \
                                 INDEX {} CLUSTERED COLUMNSTORE \
                                 );".format(TableName_Full, IndexName))
+            # [Year] SMALLINT, \
             CONNECT.commit()
     
             cursor.execute("CREATE VIEW {} (\
