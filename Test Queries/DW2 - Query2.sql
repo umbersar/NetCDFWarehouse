@@ -1,0 +1,65 @@
+---- STANDARD QUERY 2: ABSOLUTE MAXIMUM OVER A SPECIFIED YEAR
+
+USE [CLIMATE_DATA_V1]
+GO
+
+DBCC DROPCLEANBUFFERS
+GO
+
+SET STATISTICS IO ON
+SET STATISTICS TIME ON
+GO
+
+-- VERSION 1:
+--WITH CTE AS (
+--	SELECT * 
+--	FROM [OBT].[V4]
+--	WHERE [Year] = 1930
+--	)
+
+--SELECT  [SpaceID], MAX([E0])
+--FROM (
+--		SELECT * 
+--		FROM [OBT].[V4]
+--		WHERE [Year] = 1930
+--	) AS sample
+--GROUP BY [SpaceID]
+--ORDER BY SpaceID
+
+
+-- VERSION 2: (failed)
+--WITH CTE AS (
+--	SELECT * 
+--	FROM [OBT].[V4]
+--	WHERE [Year] = 1930
+--	)
+
+--SELECT  TOP(10000) *
+--FROM	(CTE AS s
+--		JOIN
+--		(SELECT  [SpaceID], MAX([E0]) AS E0
+--		FROM CTE
+--		GROUP BY [SpaceID]) AS m
+--		ON s.SpaceID = m.SpaceID)
+--ORDER BY s.SpaceID
+
+-- VERSION 3:
+;WITH Time_Range AS (
+	SELECT * 
+	FROM [OBT].[V4]
+	WHERE [Year] = 1930 -- SPECIFY TEMPORAL RANGE HERE
+	)
+
+SELECT [Latitude], [Longitude], [Max_E0]
+FROM 
+	(SELECT  [SpaceID], MAX([E0]) AS Max_E0
+	FROM Time_Range
+	GROUP BY [SpaceID]) AS S
+	JOIN 
+	[DIMENSION].[SPACE_OUTPUT] AS dim
+	ON dim.[SpaceID] = S.[SpaceID] 
+ORDER BY dim.[SpaceID]
+
+SET STATISTICS IO OFF
+SET STATISTICS TIME OFF
+GO
