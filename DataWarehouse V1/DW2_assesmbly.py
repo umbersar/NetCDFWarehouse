@@ -169,8 +169,8 @@ for index, row in DF.iterrows():
                        [Month], \
                        [Day], \
                        [SpaceID], \
-                       [Latitude], \
-                       [Longitude] \
+                       [Longitude], \
+                       [Latitude] \
                        {}\
                    FROM ( \
                        [DIMENSION].[ALL] AS [DIM] \n\
@@ -179,7 +179,7 @@ for index, row in DF.iterrows():
     CONNECT.commit() 
     Print_Duration(T1, ("Year " + str(row["Year"]) + " Inserted"))    
         
-    if ((index + 1) % 4) == 0:
+    if ((index + 1) % 5) == 0:
         T3 = dt.now()
         Progress = 100 * ((index + 1) / len(DF))
         print("\tPROGRESS: {:.2f}% at {}".format(Progress, T3.strftime("%H:%M:%S %p")))

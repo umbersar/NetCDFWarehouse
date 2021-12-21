@@ -1,0 +1,78 @@
+--DBCC SHRINKDATABASE (CLIMATE_DATA_V1, 10) 
+
+--SELECT * FROM OBT.V4
+--WHERE [Year] = 1960 AND [Month] BETWEEN 1 and 6 
+--ORDER BY [DataID]
+
+--CREATE SCHEMA DW2
+--DROP TABLE IF EXISTS [DW2].[FACT]
+
+--CREATE TABLE  [DW2].[FACT](
+--		[DateID] SMALLINT, 
+--		[GridID] INT, 
+--		[E0] FLOAT,
+--		INDEX C_COLSTORE_DW2_FACT  CLUSTERED COLUMNSTORE 
+--        );
+
+--BULK INSERT [DW2].[FACT]
+--FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\AWRA-L Gridded Data 1911 - 1911.pkl'
+
+
+-- -- GRID TABLE
+DROP TABLE IF EXISTS [DW2].[GRID]
+
+CREATE TABLE  [DW2].[GRID](
+		[GridID] INT PRIMARY KEY CLUSTERED,
+		[Latitude] DECIMAL(5,2),
+		[Longitude] DECIMAL(5,2) 
+        );
+
+BULK INSERT [DW2].[GRID]
+FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_GRID.csv'
+WITH( 
+    FIRSTROW = 2, 
+    FIELDTERMINATOR = ',', 
+    ROWTERMINATOR = '\n', 
+    KEEPNULLS 
+    )
+
+
+-- -- TIME1 DIMENSION TABLE
+DROP TABLE IF EXISTS [DW2].[TIME1]
+
+CREATE TABLE  [DW2].[TIME1](
+		[DateID] INT PRIMARY KEY CLUSTERED,
+		[DateTime] DATETIME,
+        );
+
+BULK INSERT [DW2].[TIME1]
+FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_TIME1.csv'
+WITH( 
+    FIRSTROW = 2, 
+    FIELDTERMINATOR = ',', 
+    ROWTERMINATOR = '\n', 
+    KEEPNULLS 
+    )
+
+-- -- TIME2 DIMENSION TABLE
+DROP TABLE IF EXISTS [DW2].[TIME2]
+
+CREATE TABLE  [DW2].[TIME2](
+		[DateID] INT PRIMARY KEY CLUSTERED,
+		[Year] SMALLINT,
+		[Month] TINYINT,
+		[Day] TINYINT
+        );
+
+BULK INSERT [DW2].[TIME2]
+FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_TIME2.csv'
+WITH( 
+    FIRSTROW = 2, 
+    FIELDTERMINATOR = ',', 
+    ROWTERMINATOR = '\n', 
+    KEEPNULLS 
+    )
+
+
+
+	
