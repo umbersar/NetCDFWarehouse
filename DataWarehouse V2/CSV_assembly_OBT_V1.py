@@ -75,7 +75,7 @@ DF_Time1.index = DF_Time1.index + 1
 DF_Time1.to_csv(((OutputFolder+"\\DIMENSION_TIME1.csv")), index = True, header=True)
 
 
-# ## TIME DIMENSION TABLE (split integer format) - Do  UNIQUENESS CHECK ON THOSE DATES!!
+# ## TIME DIMENSION TABLE (split integer format) - 
 DateTime = np.array([], dtype='datetime64')
 for FileName in NClist:
     DS = xr.open_dataset(InputFolder+"\\"+FileName)
@@ -108,6 +108,7 @@ for Year in YearList:
     for FileName in FileList:
         DS = xr.open_dataset(InputFolder+"\\"+FileName)
         
+        # MAKES MORE SENSE TO RE-ARRANGE THIS SO THEY'RE BEING CHECKED IN A LOOP BEFORE DATA IS ACTUALLY EXTRACTED
         # For each year group set the start and end date
         if FileName == FileList[0]:
             DateID_YearStart = int(DF_Time1[DF_Time1["DateTime"] == DS.time.values[0]].index.values)
@@ -169,20 +170,27 @@ for Year in YearList:
         DS.close()
         
     
-    if BatchCount == 1:
-        Batch_StartYear = Year
-        BatchData = AnnualData
-    else:
-        BatchData = BatchData.append(AnnualData, ignore_index = True)
+    # if BatchCount == 1:
+    #     Batch_StartYear = Year
+    #     BatchData = AnnualData
+    # else:
+    #     BatchData = BatchData.append(AnnualData, ignore_index = True)
         
-    BatchCount = BatchCount + 1
+    
     Print_Duration(T1, ("{} Files Extracted".format(str(Year))))
+
+    if BatchCount == 1:
+        OutputName = "FACT {} - {}".format(str(Year), str(Year + BatchSize_Years - 1)) #has potential to mess things up when years are filtered out as above
+        AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False)
+    else:
+        AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False, mode='a')# , mode='a', chunksize=100000, compression=None )
+    Print_Duration(T1, ("Data written to {}.csv".format(OutputName)))
     
     
     # When the batch is full or after the last year of data has been extracted, export to CSV
-    if ((BatchCount == BatchSize_Years + 1) or (Year == YearList[-1])):
+    if ((BatchCount == BatchSize_Years) or (Year == YearList[-1])):
         
-        OutputName = "AWRA-L Gridded Data {} - {}".format(str(Batch_StartYear), str(Year))
+        
         
         # T2 = dt.now()
         # BatchData.to_sql("FACT", engine, schema="DW2", index=False, if_exists="append")
@@ -195,11 +203,18 @@ for Year in YearList:
         
         # print(BatchData)
         # T2 = dt.now()
-        BatchData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False)# , mode='a', chunksize=100000, compression=None )
-        Print_Duration(T1, ("Batch Data written to {}".format(OutputName)))
+        # BatchData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False)# , mode='a', chunksize=100000, compression=None )
+        # Print_Duration(T1, ("Batch Data written to {}".format(OutputName)))
+  
+    # if Year == YearList[0]:
+    #     AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False)
+        
+
+    # AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False, mode='a')# , mode='a', chunksize=100000, compression=None )
+    # Print_Duration(T1, ("Batch Data written to FACT.csv"))
          
         BatchCount = 1
-        del BatchData
+        # del BatchData
         
         # Correct NULL value format, for input to SQL server:
         # By default NaN is written to CSV as "", this block replaces them with a blank space
@@ -211,12 +226,16 @@ for Year in YearList:
         CSV = open((OutputFolder+"\\"+OutputName+".csv"), 'w')
         CSV.write(Text)
         CSV.close()
+        del CSV
         Print_Duration(T1, "CSV file NULL values cleaned /n")
         
         
         Print_Duration(FolderStartTime, "Ingestion Runtime")
         T4 = dt.now()
         print("\t{} NEXT BATCH ----------------------------- \n".format(T4.strftime("%H:%M:%S %p")))
+        
+    else:
+        BatchCount = BatchCount + 1
 
 
         
