@@ -11,8 +11,8 @@ import numpy as np
 import os
 from datetime import datetime as dt
 
-InputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\RAW NETCDF\TEST"
-OutputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\E0 CSV"
+InputFolder = "C:\Temp\netcdfs"
+OutputFolder = "C:\Temp\netcdfs\csv"
         
 def Print_Duration(start_time, update):
     ''' Report the duration and progess throughout an iteration'''

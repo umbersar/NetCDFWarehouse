@@ -1,0 +1,3 @@
+ideas:
+
+create a clustered index on a table, then drop? it and create a clustered columnstore index?? this might help us with ordering the rows for deciles which could help speed up the query
