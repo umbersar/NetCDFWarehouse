@@ -1,7 +1,11 @@
---USE CLIMATE_DATA_V1
---GO
+USE NetCDFWarehouse
+GO
 
---CREATE SCHEMA DW1
+IF NOT EXISTS ( SELECT  *
+                FROM sys.schemas
+                WHERE name = N'DW1')
+    EXEC('CREATE SCHEMA [DW1]');
+go
 
 
 -- -- GRID TABLE
@@ -11,10 +15,10 @@ CREATE TABLE  [DW1].[GRID](
 		[GridID] INT PRIMARY KEY CLUSTERED,
 		[Latitude] DECIMAL(5,2),
 		[Longitude] DECIMAL(5,2) 
-        );
+        )on [datawarehouse] ;
 
 BULK INSERT [DW1].[GRID]
-FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_GRID.csv'
+FROM 'C:\Temp\netcdfs\csv\DIMENSION_GRID.csv'
 WITH( 
     FIRSTROW = 2, 
     FIELDTERMINATOR = ',', 
@@ -29,10 +33,10 @@ DROP TABLE IF EXISTS [DW1].[TIME1]
 CREATE TABLE  [DW1].[TIME1](
 		[DateID] INT PRIMARY KEY CLUSTERED,
 		[DateTime] DATETIME,
-        );
+        )on [datawarehouse];
 
 BULK INSERT [DW1].[TIME1]
-FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_TIME1.csv'
+FROM 'C:\Temp\netcdfs\csv\DIMENSION_TIME1.csv'
 WITH( 
     FIRSTROW = 2, 
     FIELDTERMINATOR = ',', 
@@ -48,10 +52,10 @@ CREATE TABLE  [DW1].[TIME2](
 		[Year] SMALLINT,
 		[Month] TINYINT,
 		[Day] TINYINT
-        );
+        )on [datawarehouse];
 
 BULK INSERT [DW1].[TIME2]
-FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\DIMENSION_TIME2.csv'
+FROM 'C:\Temp\netcdfs\csv\\DIMENSION_TIME2.csv'
 WITH( 
     FIRSTROW = 2, 
     FIELDTERMINATOR = ',', 
@@ -69,14 +73,16 @@ CREATE TABLE  [DW1].[FACT](
 		[GridID] INT, 
 		[E0] FLOAT,
 		CONSTRAINT CL_ROWSTORE_DW1FACT PRIMARY KEY ([DateID], [GridID]) -- or for columnstore use: INDEX <index_name>  CLUSTERED COLUMNSTORE 
-        );
+        )on [datawarehouse];
 
--- -- This needs to be executed on it's own
---CREATE VIEW DW1_FACT ([DateID], [GridID], [E0]) AS
---	SELECT [DateID], [GridID], [E0] FROM [DW1].[FACT];
+go
+ -- This needs to be executed on it's own
+CREATE VIEW DW1_FACT ([DateID], [GridID], [E0]) AS
+	SELECT [DateID], [GridID], [E0] FROM [DW1].[FACT];
+go
 
 BULK INSERT [DW1_FACT]
-FROM 'C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2\FACT 1911 - 1915.csv'
+FROM 'C:\Temp\netcdfs\csv\FACT 2010 - 2014.csv'
 WITH (
 	FIRSTROW = 2, 
     FIELDTERMINATOR = ',', 
