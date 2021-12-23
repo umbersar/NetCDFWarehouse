@@ -15,8 +15,8 @@ from datetime import datetime as dt
 # from sqlalchemy import event
 # import urllib
 
-InputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\RAW NETCDF\TEST"
-OutputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2"
+InputFolder = "C:\\Temp\\netcdfs"
+OutputFolder = "C:\Temp\\netcdfs\\csv"
 
 
 # Connection_String = ('DRIVER={SQL Server};'
