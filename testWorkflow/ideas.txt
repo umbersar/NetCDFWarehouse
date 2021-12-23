@@ -1,3 +1,11 @@
 ideas:
 
-create a clustered index on a table, then drop? it and create a clustered columnstore index?? this might help us with ordering the rows for deciles which could help speed up the query
+1. create a clustered index on a table, then drop? it and create a clustered columnstore index?? this might help us with ordering the rows for deciles which could help speed up the query
+
+CREATE TABLE [dbo].acr_myTable(
+    [Id] [bigint] NOT NULL,
+    [label] [nvarchar](max) NOT NULL,
+)on [staging] 
+
+sp_help '[dbo].acr_myTable'
+sp_helpfile
