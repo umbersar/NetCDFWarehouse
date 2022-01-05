@@ -1,0 +1,329 @@
+QUERY TESTING FOR DataWarehouse Structure 1 (DW2): STAR-schema with a clustered rowstore index, and split integer date columns format.
+COMMENT Exploring a comparison between date formats.
+Configuration option 'show advanced options' changed from 1 to 1. Run the RECONFIGURE statement to install.
+Configuration option 'affinity mask' changed from 255 to 255. Run the RECONFIGURE statement to install.
+Configuration option 'affinity I/O mask' changed from 3840 to 3840. Run the RECONFIGURE statement to install.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+
+STANDARD QUERY 1: RAW DATA FOR A GIVEN TIMESTEP -----------------------------------------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1844 ms,  elapsed time = 13153 ms.
+SQL Server parse and compile time: 
+   CPU time = 16 ms, elapsed time = 17 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 1, logical reads 2209, physical reads 4, page server reads 0, read-ahead reads 2203, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 485 ms,  elapsed time = 277 ms.
+
+STANDARD QUERY 2: ABSOLUTE MAXIMUM OVER A SPECIFIED YEAR ---------------------------------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 218 ms,  elapsed time = 214 ms.
+SQL Server parse and compile time: 
+   CPU time = 9 ms, elapsed time = 9 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 365, logical reads 806487, physical reads 218, page server reads 0, read-ahead reads 802612, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 127406 ms,  elapsed time = 18448 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+STANDARD QUERY 3: MONTHLY DECILE --------------------------------------------------------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 375 ms,  elapsed time = 369 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+
+TEST 1: 10 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 203 ms,  elapsed time = 201 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 14 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 3653, logical reads 8071512, physical reads 3960, page server reads 0, read-ahead reads 8044292, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 8, logical reads 3112012, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 1431328 ms,  elapsed time = 211711 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 2: 20 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1188 ms,  elapsed time = 11807 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 139 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 9, logical reads 32207408, physical reads 3, page server reads 0, read-ahead reads 32194599, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 8, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 8, logical reads 6764660, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 2403358 ms,  elapsed time = 385110 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 3: 30 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1500 ms,  elapsed time = 30976 ms.
+SQL Server parse and compile time: 
+   CPU time = 16 ms, elapsed time = 127 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 10958, logical reads 24212329, physical reads 17951, page server reads 0, read-ahead reads 24151846, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 8, logical reads 10497326, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 4996246 ms,  elapsed time = 767810 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 4: 40 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1235 ms,  elapsed time = 26473 ms.
+SQL Server parse and compile time: 
+   CPU time = 15 ms, elapsed time = 115 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 9, logical reads 32211920, physical reads 3, page server reads 0, read-ahead reads 32194603, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 5, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 8, logical reads 14229797, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 4245046 ms,  elapsed time = 695344 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+STANDARD QUERY 4: LONG-TERM AVERAGE (Spatial) -------------------------------------------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1234 ms,  elapsed time = 30971 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 22 ms.
+
+TEST 1: 10 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 250 ms,  elapsed time = 239 ms.
+SQL Server parse and compile time: 
+   CPU time = 16 ms, elapsed time = 78 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 3653, logical reads 8071512, physical reads 3254, page server reads 0, read-ahead reads 8039559, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 927700 ms,  elapsed time = 128687 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 2: 20 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1031 ms,  elapsed time = 1030 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 15 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 9, logical reads 32207270, physical reads 3, page server reads 0, read-ahead reads 32194615, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 1628939 ms,  elapsed time = 216716 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 3: 30 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1157 ms,  elapsed time = 1158 ms.
+SQL Server parse and compile time: 
+   CPU time = 29 ms, elapsed time = 29 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 10958, logical reads 24212329, physical reads 13516, page server reads 0, read-ahead reads 24147569, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 2771434 ms,  elapsed time = 364516 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 4: 40 YEARS ----------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 984 ms,  elapsed time = 988 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 14 ms.
+
+(572721 rows affected)
+Table 'FACT'. Scan count 9, logical reads 32212184, physical reads 3, page server reads 0, read-ahead reads 32194553, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'TIME2'. Scan count 9, logical reads 118, physical reads 1, page server reads 0, read-ahead reads 46, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 9, logical reads 1716, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 2389860 ms,  elapsed time = 308979 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+STANDARD QUERY 5: ANOMALY WRT 30 YEAR BASE (Spatial) ------------------------------------------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+
+TEST 1: ANNUAL AVERAGE ----------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1047 ms,  elapsed time = 1041 ms.
+SQL Server parse and compile time: 
+   CPU time = 31 ms, elapsed time = 42 ms.
+
+(572721 rows affected)
+Table 'TIME2'. Scan count 18, logical reads 236, physical reads 6, page server reads 0, read-ahead reads 77, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 5, page server reads 0, read-ahead reads 3269, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'FACT'. Scan count 11323, logical reads 25099452, physical reads 2775, page server reads 0, read-ahead reads 25013679, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 2027064 ms,  elapsed time = 281373 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 2: MONTHLY AVERAGE ---------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1047 ms,  elapsed time = 1045 ms.
+SQL Server parse and compile time: 
+   CPU time = 31 ms, elapsed time = 40 ms.
+
+(572721 rows affected)
+Table 'TIME2'. Scan count 18, logical reads 236, physical reads 7, page server reads 0, read-ahead reads 77, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 5, page server reads 0, read-ahead reads 3266, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'FACT'. Scan count 10989, logical reads 24361186, physical reads 2893, page server reads 0, read-ahead reads 24304352, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 2027401 ms,  elapsed time = 280578 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+TEST 3: DAILY AVERAGE -----------------------
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+ SQL Server Execution Times:
+   CPU time = 1250 ms,  elapsed time = 1248 ms.
+SQL Server parse and compile time: 
+   CPU time = 31 ms, elapsed time = 39 ms.
+
+(572721 rows affected)
+Table 'TIME2'. Scan count 18, logical reads 236, physical reads 6, page server reads 0, read-ahead reads 75, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'GRID'. Scan count 18, logical reads 3432, physical reads 5, page server reads 0, read-ahead reads 3270, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'FACT'. Scan count 10959, logical reads 24294834, physical reads 4128, page server reads 0, read-ahead reads 24231955, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+
+ SQL Server Execution Times:
+   CPU time = 1828518 ms,  elapsed time = 253338 ms.
+Warning: Null value is eliminated by an aggregate or other SET operation.
+
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+
+TESTING COMPLETE
+
+REMEMBER TO RESET PROCESSOR AFFINITY
+
+Completion time: 2021-12-26T23:36:29.9686568+11:00

@@ -114,7 +114,7 @@ DF_Time2.to_csv(((OutputFolder+"\\DIMENSION_TIME2.csv")), index = True, header=T
 
 
 # This appears to be optimum for daily files
-BatchSize_Years = 2
+BatchSize_Years = 10
 BatchCount = 1
 FolderStartTime = dt.now()
 print("\t{} INGESTION STARTED ----------------------------- \n".format(FolderStartTime.strftime("%H:%M:%S %p")))
@@ -188,10 +188,10 @@ for Year in YearList:
         # Create an annual DataFrame, and add columns for each variable.
         if FileName == FileList[0]:
             AnnualData = pd.DataFrame({
-                'DateTime': np.repeat(DS.time.values, DimGrid),
-                'Latitude' : np.tile(Lat, DimTime),
-                'Longitude' : np.tile(Lon , DimTime),
-                ShortName : getattr( getattr(DS, ShortName), "values").flatten() })
+                'Date': np.repeat(DS.time.values, DimGrid),
+                'Latitude': np.tile(Lat, DimTime),
+                'Longitude': np.tile(Lon , DimTime),
+                ShortName: getattr( getattr(DS, ShortName), "values").flatten()})
             
         else:
             AnnualData[ShortName] = getattr( getattr(DS, ShortName), "values").flatten()
@@ -231,7 +231,7 @@ for Year in YearList:
         print("\t{} NEXT BATCH ----------------------------- \n".format(T4.strftime("%H:%M:%S %p")))
         
     else:
-        BatchCount = BatchCount + 1 
+        BatchCount = BatchCount + 1
 
 
         
