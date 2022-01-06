@@ -1,4 +1,4 @@
-PRINT 'QUERY TESTING FOR DataWarehouse Structure 1 (DW2): STAR-schema with a clustered rowstore index, and split integer date columns format.'
+PRINT 'QUERY TESTING FOR DataWarehouse Structure 2 (DW2): STAR-schema with a clustered rowstore index, and split integer date columns format.'
 PRINT 'COMMENT Exploring a comparison between date formats.'
 
 USE [CLIMATE_DATA_V1]
