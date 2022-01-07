@@ -6,13 +6,13 @@ go
 CREATE DATABASE [NetCDFWarehouse]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'NetCDFWarehouse', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\NetCDFWarehouse.mdf' , SIZE = 131072KB , FILEGROWTH = 65536KB ), 
+( NAME = N'NetCDFWarehouse', FILENAME = N'C:\database\DATA\NetCDFWarehouse.mdf' , SIZE = 131072KB , FILEGROWTH = 65536KB ), 
  FILEGROUP [staging] 
-( NAME = N'stagingfile1', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\stagingfile1.ndf' , SIZE = 1048576KB , FILEGROWTH = 131072KB ),
+( NAME = N'stagingfile1', FILENAME = N'C:\database\DATA\stagingfile1.ndf' , SIZE = 1048576KB , FILEGROWTH = 131072KB ),
  FILEGROUP [datawarehouse] 
-( NAME = N'datawarehousefile1', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\datawarehousefile1.ndf' , SIZE = 1048576KB , FILEGROWTH = 131072KB )
+( NAME = N'datawarehousefile1', FILENAME = N'C:\database\DATA\datawarehousefile1.ndf' , SIZE = 1048576KB , FILEGROWTH = 131072KB )
  LOG ON 
-( NAME = N'NetCDFWarehouse_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\NetCDFWarehouse_log.ldf' , SIZE = 524288KB , FILEGROWTH = 131072KB )
+( NAME = N'NetCDFWarehouse_log', FILENAME = N'C:\database\DATA\NetCDFWarehouse_log.ldf' , SIZE = 524288KB , FILEGROWTH = 131072KB )
 GO
 --ALTER DATABASE [NetCDFWarehouse] ADD FILEGROUP [datawarehouse]
 --GO
