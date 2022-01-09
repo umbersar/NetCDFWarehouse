@@ -27,10 +27,10 @@ T1 = dt.now()
 print("\t{} : Assembly Started".format(dt.now()))
 
 # CONNECT TO SQL SERVER
-CONNECT = pyodbc.connect('DRIVER={SQL Server};\
-                        SERVER=MAGICAL-BM;\
-                        DATABASE=CLIMATE_DATA_V1;\
-                        Trusted_Connection=yes')
+CONNECT = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};'
+                        'SERVER=MAGICAL-BM;'
+                        'DATABASE=CLIMATE_DATA_V1;'
+                        'Trusted_Connection=yes;')
 cursor = CONNECT.cursor()
 print("\t{} : Connected to Server".format(dt.now()))
 
@@ -39,7 +39,7 @@ print("\t{} : Connected to Server".format(dt.now()))
 cursor.execute(" \
     DROP TABLE IF EXISTS [DW4].[OBT] \
     CREATE TABLE  [DW4].[OBT]( \
-    		[ID] BIGINT IDENTITY(1,1), -- \
+    		[ID] BIGINT IDENTITY(1,1), \
     		[Year] SMALLINT,\
     		[Month] TINYINT,\
     		[Day] TINYINT,\
@@ -56,8 +56,7 @@ CONNECT.commit()
 # CREATE VIEW ON OBT WITHOUT THE ID COLUMN SO THAT ORDER IS PRESERVED DURING INSERT
 cursor.execute("\
     CREATE VIEW DW4_OBT ([Year], [Month], [Day], [Latitude], [Longitude], [E0]) AS \
-     	SELECT [Year], [Month], [Day], [Latitude], [Longitude], [E0] FROM [DW4].[OBT]; \
-    GO \
+     	SELECT [Year], [Month], [Day], [Latitude], [Longitude], [E0] FROM [DW4].[OBT] \
     ")
 CONNECT.commit()
 print("\t{} : OBT Created".format(dt.now()))

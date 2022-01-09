@@ -13,7 +13,7 @@ import os
 from datetime import datetime as dt
 
 InputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\e0\RAW NETCDF\TEST"
-OutputFolder = "C:\AWRA_nc_dataset\AWRA-L_historical_data\DW_V2"
+OutputFolder = "D:\CSIRO\STAR-SCHEMA V1"
         
 def Print_Duration(start_time, update):
     ''' Report the duration and progess throughout an iteration'''
@@ -40,8 +40,10 @@ def Print_Duration(start_time, update):
 #         NClist.append(FileName)
         
 NClist = [FileName for FileName in os.listdir(InputFolder) if FileName[-3:] == '.nc']
-YearList = list(set([int(FileName[-7:-3]) for FileName in NClist])).sort()
-VarList = list(set([FileName[:-8] for FileName in NClist])).sort()
+YearList = list(set([int(FileName[-7:-3]) for FileName in NClist]))
+YearList.sort()
+VarList = list(set([FileName[:-8] for FileName in NClist]))
+VarList.sort()
 
 # Check that data for all variables is available in each year.
 MissingYearList = []
@@ -63,7 +65,7 @@ if len(np.unique(np.diff(np.array(YearList)))) != 1:
 # SPATIAL DIMENSION TABLE:
 # Creating and exporting the space dimension table to csv. 
 # The DataFrame index is included as the GridID to be used in joining tables.
-DS = xr.open_dataset(InputFolder+"\\"+FileName) 
+DS = xr.open_dataset(InputFolder+"\\"+NClist[0]) 
 Lon,Lat = np.meshgrid(DS.longitude.values, DS.latitude.values)
 Lon = Lon.flatten()
 Lat = Lat.flatten()
@@ -112,7 +114,7 @@ DF_Time2.to_csv(((OutputFolder+"\\DIMENSION_TIME2.csv")), index = True, header=T
 
 
 # This appears to be optimum for daily files
-BatchSize_Years = 10
+BatchSize_Years = 1
 BatchCount = 1
 FolderStartTime = dt.now()
 print("\t{} INGESTION STARTED ----------------------------- \n".format(FolderStartTime.strftime("%H:%M:%S %p")))
@@ -172,6 +174,7 @@ for Year in YearList:
 T1 = dt.now()            
 for Year in YearList:
     
+    FileList = [FileName for FileName in NClist if str(Year) in FileName]
         
     # Extract and assemble all the datasets from a given year into a single DataFrame:
     for FileName in FileList:
@@ -179,11 +182,15 @@ for Year in YearList:
         # Extract dataset and variable name with xarray
         DS = xr.open_dataset(InputFolder+"\\"+FileName)
         ShortName = getattr(getattr(DS, (DS.var_name)), "name")
+        DateID_YearStart = int(DF_Time1[DF_Time1["DateTime"] == DS.time.values[0]].index.values)
+        DateID_YearEnd = int(DF_Time1[DF_Time1["DateTime"] == DS.time.values[-1]].index.values)
         DimTime = len(DS.time.values)
         
         # Create an annual DataFrame, and add columns for each variable.
         if FileName == FileList[0]:
             AnnualData = pd.DataFrame({
+                "DateID": np.arange(DateID_YearStart, DateID_YearEnd + 1).repeat(DimGrid),
+                "GridID": np.tile(np.arange(1, DimGrid + 1), DimTime),
                 ShortName: getattr( getattr(DS, ShortName), "values").flatten()})
             
         else:
@@ -194,7 +201,7 @@ for Year in YearList:
     
 
     if BatchCount == 1:
-        OutputName = "FACT {} - {}".format(str(Year), str(Year + BatchSize_Years - 1)) #has potential to mess things up when years are filtered out as above
+        OutputName = "FACT {}".format(str(Year)) #has potential to mess things up when years are filtered out as above
         AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False)
     else:
         AnnualData.to_csv(((OutputFolder+"\\"+OutputName+".csv")), index = False, header=False, mode='a')# , mode='a', chunksize=100000, compression=None )
