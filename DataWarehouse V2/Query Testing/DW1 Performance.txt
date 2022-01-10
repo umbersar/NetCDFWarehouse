@@ -61,7 +61,7 @@ DBCC execution completed. If DBCC printed error messages, contact your system ad
 SQL Server parse and compile time: 
    CPU time = 0 ms, elapsed time = 0 ms.
 
-TEST 1: 10 YEARS ----------------------------
+TEST 3.1: 10 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -83,7 +83,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 1319858 ms,  elapsed time = 194741 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 2: 20 YEARS ----------------------------
+TEST 3.2: 20 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -105,7 +105,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 2364402 ms,  elapsed time = 369632 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 3: 30 YEARS ----------------------------
+TEST 3.3: 30 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -127,7 +127,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 4478171 ms,  elapsed time = 691197 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 4: 40 YEARS ----------------------------
+TEST 3.4: 40 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -160,7 +160,7 @@ DBCC execution completed. If DBCC printed error messages, contact your system ad
 SQL Server parse and compile time: 
    CPU time = 0 ms, elapsed time = 22 ms.
 
-TEST 1: 10 YEARS ----------------------------
+TEST 4.1: 10 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -182,7 +182,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 931718 ms,  elapsed time = 130733 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 2: 20 YEARS ----------------------------
+TEST 4.2: 20 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -204,7 +204,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 1632405 ms,  elapsed time = 215697 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 3: 30 YEARS ----------------------------
+TEST 4.3: 30 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -226,7 +226,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 2825280 ms,  elapsed time = 372726 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 4: 40 YEARS ----------------------------
+TEST 4.4: 40 YEARS ----------------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -253,7 +253,7 @@ STANDARD QUERY 5: ANOMALY WRT 30 YEAR BASE (Spatial) ---------------------------
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
 
-TEST 1: ANNUAL AVERAGE ----------------------
+TEST 5.1: ANNUAL AVERAGE ----------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -275,7 +275,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 2147518 ms,  elapsed time = 284238 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 2: MONTHLY AVERAGE ---------------------
+TEST 5.2: MONTHLY AVERAGE ---------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
@@ -297,7 +297,7 @@ Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server 
    CPU time = 2144405 ms,  elapsed time = 281012 ms.
 Warning: Null value is eliminated by an aggregate or other SET operation.
 
-TEST 3: DAILY AVERAGE -----------------------
+TEST 5.3: DAILY AVERAGE -----------------------
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
