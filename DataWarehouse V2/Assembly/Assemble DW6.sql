@@ -1,0 +1,199 @@
+USE CLIMATE_DATA_V1
+GO
+
+--CREATE SCHEMA DW6
+
+-- -- GRID TABLE
+DROP TABLE IF EXISTS [DW6].[GRID]
+
+CREATE TABLE  [DW6].[GRID](
+		[GridID] INT PRIMARY KEY CLUSTERED,
+		[Latitude] DECIMAL(5,2),
+		[Longitude] DECIMAL(5,2) 
+        );
+BULK INSERT [DW6].[GRID]
+FROM 'D:\CSIRO\STAR-SCHEMA V2\DIMENSION_GRID.csv'
+WITH( 
+    FIRSTROW = 2, 
+    FIELDTERMINATOR = ',', 
+    ROWTERMINATOR = '\n', 
+    KEEPNULLS 
+    )
+GO
+
+-- -- TIME TABLE
+DROP TABLE IF EXISTS [DW6].[TIME]
+CREATE TABLE  [DW6].[TIME](
+		[DateID] INT PRIMARY KEY CLUSTERED,
+		[Year] SMALLINT,
+		[Month] TINYINT,
+		[Day] TINYINT
+        );
+BULK INSERT [DW6].[TIME]
+FROM 'D:\CSIRO\STAR-SCHEMA V2\DIMENSION_TIME2.csv'
+WITH( 
+    FIRSTROW = 2, 
+    FIELDTERMINATOR = ',', 
+    ROWTERMINATOR = '\n', 
+    KEEPNULLS 
+    )
+GO
+
+
+DROP TABLE IF EXISTS [DW6].[OBT]
+CREATE TABLE  [DW6].[OBT](
+		[ID] BIGINT IDENTITY(1,1), -- 
+		[Year] SMALLINT,
+		[Month] TINYINT,
+		[Day] TINYINT,
+		[GridID] INT, 
+		[E0] FLOAT,
+		CONSTRAINT CL_ROWSTORE_DW6FACT PRIMARY KEY ([Year], [Month], [Day], [GridID]) -- or for columnstore use: INDEX <index_name>  CLUSTERED COLUMNSTORE 
+        );
+
+DROP VIEW IF EXISTS [DW6_OBT]
+GO
+CREATE VIEW DW6_OBT ([Year], [Month], [Day], [GridID], [E0]) AS
+	SELECT [Year], [Month], [Day], [GridID], [E0] FROM [DW6].[OBT];
+GO
+
+
+DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+GO
+DECLARE 
+		@Year INT,
+		@YearStart INT,
+		@YearEnd INT,
+		@YearIncrement INT,
+		@ProgressPercent DECIMAL(5,2),
+		@FilePath NVARCHAR(30),
+		@FileName NVARCHAR(20),
+		@Bulk_Insert_Command NVARCHAR(200),
+		@CreateView_LoadingTable NVARCHAR(200);
+
+SET @YearStart	= 1911;
+SET @YearEnd	= 1950;
+SET @Year		= @YearStart;
+SET @YearIncrement = 1;
+SET @FilePath = 'D:\CSIRO\STAR-SCHEMA V1\'
+SET @CreateView_LoadingTable =
+'	CREATE VIEW DW6_LOAD ([DateID], [GridID], [E0]) AS
+	SELECT [DateID], [GridID], [E0] FROM [DW6].[LOAD];'
+
+
+WHILE (@Year <= @YearEnd)
+BEGIN;
+	SET @FileName = N'FACT ' + CAST(@Year AS NVARCHAR(4)) + '.csv';
+
+	DROP TABLE IF EXISTS [DW6].[LOAD]
+	DROP VIEW IF EXISTS DW6_LOAD
+
+	CREATE TABLE  [DW6].[LOAD](
+		[ID] BIGINT IDENTITY(1,1), -- 
+		[DateID] SMALLINT,
+		[GridID] INT, 
+		[E0] FLOAT)
+
+	EXEC(@CreateView_LoadingTable)
+
+	SET @Bulk_Insert_Command = '
+	BULK INSERT [DW6_LOAD]
+	FROM ''' + @FilePath + @FileName + '''
+	WITH( 
+		FIRSTROW = 2, 
+		FIELDTERMINATOR = '','', 
+		ROWTERMINATOR = ''\n'',
+		KEEPNULLS 
+		)'
+
+	PRINT  CAST(CURRENT_TIMESTAMP AS NVARCHAR(40)) + N': LOADING FILE "' + @FileName + '"'
+	EXEC(@Bulk_Insert_Command)
+
+	CHECKPOINT
+	DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+	PRINT  CAST(CURRENT_TIMESTAMP AS NVARCHAR(40)) + N': TRANSFORMING TO OBT'
+	INSERT INTO [DW6_OBT]
+	SELECT [Year], [Month], [Day], [GridID], [E0]
+	FROM (
+		[DW6].[LOAD] AS [Fact]
+
+		JOIN  [DW6].[TIME] AS [Time]
+		ON [Fact].[DateID] = [Time].[DateID]
+		)
+
+	CHECKPOINT
+	DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+	SET @Year = @Year + @YearIncrement;
+	SET @ProgressPercent = 100 * (CAST(@Year - @YearStart AS FLOAT) / CAST(@YearEnd - @YearStart + 1 AS FLOAT));
+	PRINT  CAST(CURRENT_TIMESTAMP AS NVARCHAR(40)) + N': ' + CAST(@ProgressPercent AS NVARCHAR(6)) +'% COMPLETE'
+END
+
+DROP TABLE IF EXISTS [DW6].[LOAD]
+DROP VIEW IF EXISTS DW6_LOAD
+DROP VIEW IF EXISTS DW6_OBT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- MODIFYING THE STRUCTURE OF DW3 TO ADD SPLIT INTEGER DATES, RATHER THAN RE-INGESTING. -
+-- OUTCOME: didn't work. first column took 3 hours then blew out the transaction log
+
+--ALTER TABLE [DW3].[OBT]
+--DROP COLUMN [Year], [Month], [Day]
+
+----ALTER TABLE [DW3].[OBT]
+----ADD [Year] SMALLINT NULL,
+----	[Month] TINYINT NULL,
+----	[Day] TINYINT NULL;
+
+--DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+--UPDATE [DW3].[OBT]
+--SET [Year] =	YEAR([DateTime]);
+--CHECKPOINT
+--DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+--UPDATE [DW3].[OBT]
+--SET [Month] =	MONTH([DateTime]);
+--CHECKPOINT
+--DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+--UPDATE [DW3].[OBT]
+--SET [Day] =		DAY([DateTime]);
+--CHECKPOINT
+--DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+--ALTER TABLE [DW3].[OBT]
+--DROP COLUMN [DateTime]
+--CHECKPOINT
+--DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
+
+---- NEED TO FIGURE OUT WHAT TO DO ABOUT THE INDEX
+
+--SELECT TOP(100) * FROM [DW3].[OBT]

@@ -73,7 +73,7 @@ PRINT CHAR(13) + CHAR(10) + N'STANDARD QUERY 3: MONTHLY DECILE -----------------
 DBCC DROPCLEANBUFFERS
 GO
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 1: 10 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 3.1: 10 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
@@ -114,7 +114,7 @@ WHERE [Year] = 1915 AND [Month] = 7 -- SPECIFY TIMESTEP TO BE QUERIED
 ORDER BY [DW1_GRID].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 2: 20 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 3.2: 20 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
@@ -155,7 +155,7 @@ WHERE [Year] = 1915 AND [Month] = 7 -- SPECIFY TIMESTEP TO BE QUERIED
 ORDER BY [DW1_GRID].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 3: 30 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 3.3: 30 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
@@ -196,7 +196,7 @@ WHERE [Year] = 1915 AND [Month] = 7 -- SPECIFY TIMESTEP TO BE QUERIED
 ORDER BY [DW1_GRID].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 4: 40 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 3.4: 40 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
@@ -282,7 +282,7 @@ ORDER BY [DW1_GRID].[GridID]
 PRINT CHAR(13) + CHAR(10) + N'STANDARD QUERY 4: LONG-TERM AVERAGE (Spatial) -------------------------------------------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
-PRINT CHAR(13) + CHAR(10) + N'TEST 1: 10 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 4.1: 10 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
@@ -303,7 +303,7 @@ GROUP BY [Grid].[GridID], [Latitude], [Longitude]
 ORDER BY [Grid].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 2: 20 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 4.2: 20 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
@@ -324,7 +324,7 @@ GROUP BY [Grid].[GridID], [Latitude], [Longitude]
 ORDER BY [Grid].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 3: 30 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 4.3: 30 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
@@ -345,7 +345,7 @@ GROUP BY [Grid].[GridID], [Latitude], [Longitude]
 ORDER BY [Grid].[GridID]
 
 
-PRINT CHAR(13) + CHAR(10) + N'TEST 4: 40 YEARS ----------------------------' + CHAR(13) + CHAR(10);
+PRINT CHAR(13) + CHAR(10) + N'TEST 4.4: 40 YEARS ----------------------------' + CHAR(13) + CHAR(10);
 DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0

@@ -1,0 +1,526 @@
+(14610 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  6:33PM: LOADING FILE "FACT 1911.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  6:41PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  6:46PM: 2.50% COMPLETE
+Jan 10 2022  6:46PM: LOADING FILE "FACT 1912.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  6:54PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:00PM: 5.00% COMPLETE
+Jan 10 2022  7:00PM: LOADING FILE "FACT 1913.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:08PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:14PM: 7.50% COMPLETE
+Jan 10 2022  7:14PM: LOADING FILE "FACT 1914.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:22PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:29PM: 10.00% COMPLETE
+Jan 10 2022  7:29PM: LOADING FILE "FACT 1915.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:37PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:43PM: 12.50% COMPLETE
+Jan 10 2022  7:43PM: LOADING FILE "FACT 1916.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:51PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  7:57PM: 15.00% COMPLETE
+Jan 10 2022  7:57PM: LOADING FILE "FACT 1917.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:05PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:12PM: 17.50% COMPLETE
+Jan 10 2022  8:12PM: LOADING FILE "FACT 1918.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:19PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:26PM: 20.00% COMPLETE
+Jan 10 2022  8:26PM: LOADING FILE "FACT 1919.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:34PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:40PM: 22.50% COMPLETE
+Jan 10 2022  8:40PM: LOADING FILE "FACT 1920.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:48PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  8:54PM: 25.00% COMPLETE
+Jan 10 2022  8:54PM: LOADING FILE "FACT 1921.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:02PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:08PM: 27.50% COMPLETE
+Jan 10 2022  9:08PM: LOADING FILE "FACT 1922.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:16PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:23PM: 30.00% COMPLETE
+Jan 10 2022  9:23PM: LOADING FILE "FACT 1923.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:30PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:37PM: 32.50% COMPLETE
+Jan 10 2022  9:37PM: LOADING FILE "FACT 1924.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:44PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:51PM: 35.00% COMPLETE
+Jan 10 2022  9:51PM: LOADING FILE "FACT 1925.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022  9:59PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:05PM: 37.50% COMPLETE
+Jan 10 2022 10:05PM: LOADING FILE "FACT 1926.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:13PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:19PM: 40.00% COMPLETE
+Jan 10 2022 10:19PM: LOADING FILE "FACT 1927.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:27PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:34PM: 42.50% COMPLETE
+Jan 10 2022 10:34PM: LOADING FILE "FACT 1928.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:42PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:48PM: 45.00% COMPLETE
+Jan 10 2022 10:48PM: LOADING FILE "FACT 1929.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 10:56PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:02PM: 47.50% COMPLETE
+Jan 10 2022 11:02PM: LOADING FILE "FACT 1930.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:10PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:16PM: 50.00% COMPLETE
+Jan 10 2022 11:16PM: LOADING FILE "FACT 1931.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:24PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:30PM: 52.50% COMPLETE
+Jan 10 2022 11:30PM: LOADING FILE "FACT 1932.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:38PM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:45PM: 55.00% COMPLETE
+Jan 10 2022 11:45PM: LOADING FILE "FACT 1933.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:53PM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 10 2022 11:59PM: 57.50% COMPLETE
+Jan 10 2022 11:59PM: LOADING FILE "FACT 1934.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:08AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:15AM: 60.00% COMPLETE
+Jan 11 2022 12:15AM: LOADING FILE "FACT 1935.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:22AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:29AM: 62.50% COMPLETE
+Jan 11 2022 12:29AM: LOADING FILE "FACT 1936.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:37AM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:43AM: 65.00% COMPLETE
+Jan 11 2022 12:43AM: LOADING FILE "FACT 1937.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:51AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022 12:57AM: 67.50% COMPLETE
+Jan 11 2022 12:57AM: LOADING FILE "FACT 1938.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:05AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:11AM: 70.00% COMPLETE
+Jan 11 2022  1:11AM: LOADING FILE "FACT 1939.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:19AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:26AM: 72.50% COMPLETE
+Jan 11 2022  1:26AM: LOADING FILE "FACT 1940.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:33AM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:40AM: 75.00% COMPLETE
+Jan 11 2022  1:40AM: LOADING FILE "FACT 1941.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:48AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  1:54AM: 77.50% COMPLETE
+Jan 11 2022  1:54AM: LOADING FILE "FACT 1942.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:02AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:08AM: 80.00% COMPLETE
+Jan 11 2022  2:08AM: LOADING FILE "FACT 1943.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:16AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:23AM: 82.50% COMPLETE
+Jan 11 2022  2:23AM: LOADING FILE "FACT 1944.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:30AM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:37AM: 85.00% COMPLETE
+Jan 11 2022  2:37AM: LOADING FILE "FACT 1945.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:45AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:51AM: 87.50% COMPLETE
+Jan 11 2022  2:51AM: LOADING FILE "FACT 1946.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  2:59AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:05AM: 90.00% COMPLETE
+Jan 11 2022  3:05AM: LOADING FILE "FACT 1947.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:13AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:20AM: 92.50% COMPLETE
+Jan 11 2022  3:20AM: LOADING FILE "FACT 1948.csv"
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:28AM: TRANSFORMING TO OBT
+
+(209615885 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:34AM: 95.00% COMPLETE
+Jan 11 2022  3:34AM: LOADING FILE "FACT 1949.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:42AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:48AM: 97.50% COMPLETE
+Jan 11 2022  3:48AM: LOADING FILE "FACT 1950.csv"
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  3:56AM: TRANSFORMING TO OBT
+
+(209043164 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 11 2022  4:03AM: 100.00% COMPLETE
+
+Completion time: 2022-01-11T04:03:16.2189685+11:00
