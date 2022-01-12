@@ -19,15 +19,31 @@ SET NUMERIC_ROUNDABORT OFF
 GO
 -- As advised by https://docs.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver15
 
-CREATE VIEW [DW8].[OBT] ([Year], [Month], [Day], [GridID]) 
-WITH SCHEMABINDING
-AS
-	SELECT [Year], [Month], [Day], [GridID] FROM [DW6].[OBT]
+PRINT 'HERE'
 GO
 
+DROP VIEW IF EXISTS [DW8].[VOBT]
+GO
+
+CREATE VIEW [DW8].[VOBT] ([Year], [Month], [Day], [GridID], [E0]) 
+WITH SCHEMABINDING
+AS
+	SELECT [Year], [Month], [Day], [GridID], [E0] FROM [DW6].[OBT]
+GO
+
+DROP INDEX IF EXISTS [DW8_POC_INDEX] ON [DW8].[VOBT]
 CREATE UNIQUE CLUSTERED INDEX [DW8_POC_INDEX]
-ON [DW8_OBT] ([GridID], [E0]) INCLUDE ([Year], [Month], [Day])
+ON [DW8].[VOBT] ([GridID], [E0], [Year], [Month], [Day]) 
+--WITH (IGNORE_DUP_KEY = OFF);
 
 CHECKPOINT
 DBCC SHRINKFILE (N'CLIMATE_DATA_V1_log' , 0, TRUNCATEONLY)
 
+--SELECT COLUMNPROPERTY(OBJECT_ID('[DW8].[VOBT]'), 'Year', 'IsDeterministic') AS DET1
+--SELECT COLUMNPROPERTY(OBJECT_ID('[DW8].[VOBT]'), 'Month', 'IsDeterministic') AS DET2
+--SELECT COLUMNPROPERTY(OBJECT_ID('[DW8].[VOBT]'), 'Day', 'IsDeterministic') AS DET3
+--SELECT COLUMNPROPERTY(OBJECT_ID('[DW8].[VOBT]'), 'GridID', 'IsDeterministic') AS DET4
+--SELECT COLUMNPROPERTY(OBJECT_ID('[DW8].[VOBT]'), 'E0', 'IsDeterministic') AS DET5
+--SELECT OBJECT_ID('[DW6].[OBT]')
+
+EXEC sys.sp_spaceused @objname = N'CLIMATE_DATA_V1.DW8.VOBT'

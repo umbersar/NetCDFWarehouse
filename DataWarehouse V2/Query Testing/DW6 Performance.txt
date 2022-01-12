@@ -1,9 +1,9 @@
 SQL Server parse and compile time: 
-   CPU time = 0 ms, elapsed time = 2 ms.
+   CPU time = 0 ms, elapsed time = 0 ms.
 
  SQL Server Execution Times:
    CPU time = 0 ms,  elapsed time = 0 ms.
-QUERY TESTING FOR DataWarehouse Structure 6 (DW6): STAR-schema v2 with a clustered rowstore index, split integer date format.
+QUERY TESTING FOR DataWarehouse Structure 6 (DW6): STAR-schema v2 with a clustered rowstore index, split integer datetime format.
 COMMENT The OBT occupies 266,819.320 MB, with 1,259.336 MB for the index. Assembly took 09:29:44.
 COMMENT The GRID table occupies 12.719 MB, with 0.55 MB for the index.
 Configuration option 'show advanced options' changed from 1 to 1. Run the RECONFIGURE statement to install.
@@ -20,16 +20,16 @@ STANDARD QUERY 1: RAW DATA FOR A GIVEN TIMESTEP --------------------------------
 DBCC execution completed. If DBCC printed error messages, contact your system administrator.
 
  SQL Server Execution Times:
-   CPU time = 1407 ms,  elapsed time = 1406 ms.
+   CPU time = 219 ms,  elapsed time = 210 ms.
 SQL Server parse and compile time: 
-   CPU time = 15 ms, elapsed time = 17 ms.
+   CPU time = 0 ms, elapsed time = 13 ms.
 
-(0 rows affected)
-Table 'GRID'. Scan count 1, logical reads 5, physical reads 0, page server reads 0, read-ahead reads 507, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
-Table 'OBT'. Scan count 1, logical reads 6, physical reads 4, page server reads 0, read-ahead reads 8, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+(572721 rows affected)
+Table 'GRID'. Scan count 1, logical reads 1635, physical reads 2, page server reads 0, read-ahead reads 1635, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'OBT'. Scan count 1, logical reads 2355, physical reads 3, page server reads 0, read-ahead reads 2347, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
 
  SQL Server Execution Times:
-   CPU time = 0 ms,  elapsed time = 5 ms.
+   CPU time = 218 ms,  elapsed time = 236 ms.
 
 STANDARD QUERY 2: ABSOLUTE MAXIMUM OVER A SPECIFIED YEAR ---------------------------------------------------
 

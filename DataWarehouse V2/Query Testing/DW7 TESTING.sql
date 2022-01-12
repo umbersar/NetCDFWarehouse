@@ -1,8 +1,10 @@
 SET STATISTICS IO OFF
 SET STATISTICS TIME OFF
-PRINT 'QUERY TESTING FOR DataWarehouse Structure 6 (DW6): STAR-schema v2 with a clustered rowstore index, split integer datetime format.'
-PRINT 'COMMENT The OBT occupies 266,819.320 MB, with 1,259.336 MB for the index. Assembly took 09:29:44.'
+PRINT 'QUERY TESTING FOR DataWarehouse Structure 7 (DW7): STAR-schema v2 with a clustered rowstore index, split integer datetime format, and a non-clustered POC index'
+PRINT 'COMMENT The OBT occupies 266,819.320 MB, with 179,514.945 MB for the index. Assembly took 09:29:44.'
+PRINT 'COMMENT Adding the POC index required a further 37:15 (processor affinity was not reset)'
 PRINT 'COMMENT The GRID table occupies 12.719 MB, with 0.55 MB for the index.'
+-- DW7 is just DW6 with an additional non-clustered POC index. The table has not been re-ingested, only an index added
 
 USE [CLIMATE_DATA_V1]
 GO
@@ -38,7 +40,7 @@ GO
 SELECT [Latitude], [Longitude], [E0]
 FROM (
 		(SELECT * FROM [DW6].[OBT] 
-		WHERE [Year] = 2930 AND [Month] = 7 AND [Day] = 30) AS DW6_FACT  -- SPECIFY TIMESTEP HERE
+		WHERE [Year] = 1930 AND [Month] = 7 AND [Day] = 30) AS DW6_FACT  -- SPECIFY TIMESTEP HERE
 		LEFT JOIN 
 		[DW6].[GRID] AS DW6_GRID
 		ON [DW6_GRID].[GridID] = [DW6_FACT].[GridID]

@@ -1,8 +1,10 @@
 SET STATISTICS IO OFF
 SET STATISTICS TIME OFF
-PRINT 'QUERY TESTING FOR DataWarehouse Structure 6 (DW6): STAR-schema v2 with a clustered rowstore index, split integer datetime format.'
-PRINT 'COMMENT The OBT occupies 266,819.320 MB, with 1,259.336 MB for the index. Assembly took 09:29:44.'
+PRINT 'QUERY TESTING FOR DataWarehouse Structure 8 (DW8): STAR-schema v2 with a clustered rowstore index, split integer datetime format, and a POC indexed view'
+PRINT 'COMMENT The OBT occupies 266,819.320 MB, with 1,259.336 MB MB for the index.'
+PRINT 'COMMENT The INDEXED VIEW occupies 207,243.440 MB, with 720.408 MB for the index. Assembly took an additional 2:18:55 on top of the DW6 assembly time.'
 PRINT 'COMMENT The GRID table occupies 12.719 MB, with 0.55 MB for the index.'
+-- DW8 is just DW6 with an additional indexed view. The table has not been re-ingested, only an indexed view added
 
 USE [CLIMATE_DATA_V1]
 GO
@@ -37,7 +39,7 @@ GO
 
 SELECT [Latitude], [Longitude], [E0]
 FROM (
-		(SELECT * FROM [DW6].[OBT] 
+		(SELECT * FROM [DW8].[VOBT] 
 		WHERE [Year] = 1930 AND [Month] = 7 AND [Day] = 30) AS DW6_FACT  -- SPECIFY TIMESTEP HERE
 		LEFT JOIN 
 		[DW6].[GRID] AS DW6_GRID
@@ -53,7 +55,7 @@ GO
 
 SELECT [Latitude], [Longitude], MAX([E0]) AS Max_E0
 FROM (
-		(SELECT * FROM [DW6].[OBT] 
+		(SELECT * FROM [DW8].[VOBT] 
 		WHERE [Year] = 1930) AS DW6_FACT  -- SPECIFY TEMPORAL RANGE HERE
 
 		LEFT JOIN 
@@ -74,7 +76,7 @@ DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
 	SELECT [GridID], [Year], [Month], [E0]
-	FROM [DW6].[OBT]
+	FROM [DW8].[VOBT]
 	WHERE [Year] BETWEEN 1911 AND 1920  -- SPECIFY TEMPORAL RANGE HERE
 	),
 [DECILES] AS (
@@ -103,7 +105,7 @@ DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
 	SELECT [GridID], [Year], [Month], [E0]
-	FROM [DW6].[OBT]
+	FROM [DW8].[VOBT]
 	WHERE [Year] BETWEEN 1911 AND 1930  -- SPECIFY TEMPORAL RANGE HERE
 	),
 [DECILES] AS (
@@ -132,7 +134,7 @@ DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
 	SELECT [GridID], [Year], [Month], [E0]
-	FROM [DW6].[OBT]
+	FROM [DW8].[VOBT]
 	WHERE [Year] BETWEEN 1911 AND 1940  -- SPECIFY TEMPORAL RANGE HERE
 	),
 [DECILES] AS (
@@ -161,7 +163,7 @@ DBCC DROPCLEANBUFFERS
 GO
 WITH [SAMPLE_PERIOD] AS(
 	SELECT [GridID], [Year], [Month], [E0]
-	FROM [DW6].[OBT]
+	FROM [DW8].[VOBT]
 	WHERE [Year] BETWEEN 1911 AND 1950  -- SPECIFY TEMPORAL RANGE HERE
 	),
 [DECILES] AS (
@@ -195,7 +197,7 @@ DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
 FROM (
-		(SELECT * FROM [DW6].[OBT]
+		(SELECT * FROM [DW8].[VOBT]
 		WHERE [Year] BETWEEN 1911 AND 1920  -- DEFINE TIME PERIOD HERE
 		) AS [Fact]
 
@@ -212,7 +214,7 @@ DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
 FROM (
-		(SELECT * FROM [DW6].[OBT]
+		(SELECT * FROM [DW8].[VOBT]
 		WHERE [Year] BETWEEN 1911 AND 1930  -- DEFINE TIME PERIOD HERE
 		) AS [Fact]
 
@@ -229,7 +231,7 @@ DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
 FROM (
-		(SELECT * FROM [DW6].[OBT]
+		(SELECT * FROM [DW8].[VOBT]
 		WHERE [Year] BETWEEN 1911 AND 1940  -- DEFINE TIME PERIOD HERE
 		) AS [Fact]
 
@@ -246,7 +248,7 @@ DBCC DROPCLEANBUFFERS
 GO
 SELECT [Latitude], [Longitude], AVG([E0]) AS Avg_E0
 FROM (
-		(SELECT * FROM [DW6].[OBT]
+		(SELECT * FROM [DW8].[VOBT]
 		WHERE [Year] BETWEEN 1911 AND 1950  -- DEFINE TIME PERIOD HERE
 		) AS [Fact]
 
@@ -270,7 +272,7 @@ WITH BASE_PERIOD AS
 	SELECT [Grid].[GridID], AVG([E0]) AS[Base_E0]
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] BETWEEN 1911 AND 1940  -- DEFINE BASE PERIOD HERE
 		) AS [Fact]
 
@@ -286,7 +288,7 @@ SAMPLE_PERIOD AS
 	SELECT [Grid].[GridID],  AVG([E0]) AS Sample_E0
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] = 1930 -- DEFINE SAMPLE PERIOD HERE
 		) AS [Fact]
 
@@ -318,7 +320,7 @@ WITH BASE_PERIOD AS
 	SELECT [Grid].[GridID], AVG([E0]) AS[Base_E0]
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] BETWEEN 1911 AND 1940  -- DEFINE BASE PERIOD HERE
 		) AS [Fact]
 
@@ -334,7 +336,7 @@ SAMPLE_PERIOD AS
 	SELECT [Grid].[GridID],  AVG([E0]) AS Sample_E0
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] = 1930 AND [Month] = 7-- DEFINE SAMPLE PERIOD HERE
 		) AS [Fact]
 
@@ -365,7 +367,7 @@ WITH BASE_PERIOD AS
 	SELECT [Grid].[GridID], AVG([E0]) AS[Base_E0]
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] BETWEEN 1911 AND 1940  -- DEFINE BASE PERIOD HERE
 		) AS [Fact]
 
@@ -381,7 +383,7 @@ SAMPLE_PERIOD AS
 	SELECT [Grid].[GridID],  AVG([E0]) AS Sample_E0
 	FROM (
 		(SELECT * 
-		FROM [DW6].[OBT] 
+		FROM [DW8].[VOBT] 
 		WHERE [Year] = 1930 AND [Month] = 7 AND [Day] = 30 --- DEFINE SAMPLE PERIOD HERE
 		) AS [Fact]
 
