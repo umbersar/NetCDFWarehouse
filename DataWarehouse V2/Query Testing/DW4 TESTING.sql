@@ -1,5 +1,6 @@
 PRINT 'QUERY TESTING FOR DataWarehouse Structure 4 (DW4): One-Big-Table with a clustered rowstore index, and split integer date columns format.'
-PRINT 'COMMENT The table occupies 315,800.641 MB, plus 1,974.602 MB for the index. Took 09:58:94 to assemble from CSV files.'
+PRINT 'COMMENT The table occupies 315,800.641 MB, plus 1,974.602 MB for the index.' 
+PRINT 'COMMENT Took 09:58:94 to assemble from CSV files.'
 
 USE [CLIMATE_DATA_V1]
 GO
