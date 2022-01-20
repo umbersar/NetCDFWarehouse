@@ -1,0 +1,147 @@
+
+(572721 rows affected)
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:19AM: INSERTING FILE "FACT 1911 - 1912.csv"
+
+(418659050 rows affected)
+Jan 18 2022  9:27AM: 5.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:27AM: INSERTING FILE "FACT 1913 - 1914.csv"
+
+(418086329 rows affected)
+Jan 18 2022  9:35AM: 10.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:35AM: INSERTING FILE "FACT 1915 - 1916.csv"
+
+(418659050 rows affected)
+Jan 18 2022  9:42AM: 15.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:42AM: INSERTING FILE "FACT 1917 - 1918.csv"
+
+(418086329 rows affected)
+Jan 18 2022  9:51AM: 20.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:51AM: INSERTING FILE "FACT 1919 - 1920.csv"
+
+(418659050 rows affected)
+Jan 18 2022  9:59AM: 25.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022  9:59AM: INSERTING FILE "FACT 1921 - 1922.csv"
+
+(418086329 rows affected)
+Jan 18 2022 10:07AM: 30.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:07AM: INSERTING FILE "FACT 1923 - 1924.csv"
+
+(418659050 rows affected)
+Jan 18 2022 10:15AM: 35.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:15AM: INSERTING FILE "FACT 1925 - 1926.csv"
+
+(418086329 rows affected)
+Jan 18 2022 10:23AM: 40.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:23AM: INSERTING FILE "FACT 1927 - 1928.csv"
+
+(418659050 rows affected)
+Jan 18 2022 10:31AM: 45.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:31AM: INSERTING FILE "FACT 1929 - 1930.csv"
+
+(418086329 rows affected)
+Jan 18 2022 10:38AM: 50.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:38AM: INSERTING FILE "FACT 1931 - 1932.csv"
+
+(418659050 rows affected)
+Jan 18 2022 10:46AM: 55.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:46AM: INSERTING FILE "FACT 1933 - 1934.csv"
+
+(418086329 rows affected)
+Jan 18 2022 10:54AM: 60.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 10:54AM: INSERTING FILE "FACT 1935 - 1936.csv"
+
+(418659050 rows affected)
+Jan 18 2022 11:02AM: 65.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:02AM: INSERTING FILE "FACT 1937 - 1938.csv"
+
+(418086329 rows affected)
+Jan 18 2022 11:10AM: 70.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:10AM: INSERTING FILE "FACT 1939 - 1940.csv"
+
+(418659050 rows affected)
+Jan 18 2022 11:18AM: 75.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:18AM: INSERTING FILE "FACT 1941 - 1942.csv"
+
+(418086329 rows affected)
+Jan 18 2022 11:26AM: 80.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:26AM: INSERTING FILE "FACT 1943 - 1944.csv"
+
+(418659050 rows affected)
+Jan 18 2022 11:34AM: 85.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:34AM: INSERTING FILE "FACT 1945 - 1946.csv"
+
+(418086329 rows affected)
+Jan 18 2022 11:42AM: 90.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:42AM: INSERTING FILE "FACT 1947 - 1948.csv"
+
+(418659050 rows affected)
+Jan 18 2022 11:50AM: 95.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Jan 18 2022 11:50AM: INSERTING FILE "FACT 1949 - 1950.csv"
+
+(418086329 rows affected)
+Jan 18 2022 11:58AM: 100.00% COMPLETE
+
+(1 row affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+Completion time: 2022-01-18T11:58:32.6753308+11:00

@@ -1,0 +1,326 @@
+          FileName  Year  ... East Boundary  West Boundary
+1   e0_avg_1911.nc  1911  ...         154.0          112.0
+2   e0_avg_1912.nc  1912  ...         154.0          112.0
+3   e0_avg_1913.nc  1913  ...         154.0          112.0
+4   e0_avg_1914.nc  1914  ...         154.0          112.0
+5   e0_avg_1915.nc  1915  ...         154.0          112.0
+6   e0_avg_1916.nc  1916  ...         154.0          112.0
+7   e0_avg_1917.nc  1917  ...         154.0          112.0
+8   e0_avg_1918.nc  1918  ...         154.0          112.0
+9   e0_avg_1919.nc  1919  ...         154.0          112.0
+10  e0_avg_1920.nc  1920  ...         154.0          112.0
+11  e0_avg_1921.nc  1921  ...         154.0          112.0
+12  e0_avg_1922.nc  1922  ...         154.0          112.0
+13  e0_avg_1923.nc  1923  ...         154.0          112.0
+14  e0_avg_1924.nc  1924  ...         154.0          112.0
+15  e0_avg_1925.nc  1925  ...         154.0          112.0
+16  e0_avg_1926.nc  1926  ...         154.0          112.0
+17  e0_avg_1927.nc  1927  ...         154.0          112.0
+18  e0_avg_1928.nc  1928  ...         154.0          112.0
+19  e0_avg_1929.nc  1929  ...         154.0          112.0
+20  e0_avg_1930.nc  1930  ...         154.0          112.0
+21  e0_avg_1931.nc  1931  ...         154.0          112.0
+22  e0_avg_1932.nc  1932  ...         154.0          112.0
+23  e0_avg_1933.nc  1933  ...         154.0          112.0
+24  e0_avg_1934.nc  1934  ...         154.0          112.0
+25  e0_avg_1935.nc  1935  ...         154.0          112.0
+26  e0_avg_1936.nc  1936  ...         154.0          112.0
+27  e0_avg_1937.nc  1937  ...         154.0          112.0
+28  e0_avg_1938.nc  1938  ...         154.0          112.0
+29  e0_avg_1939.nc  1939  ...         154.0          112.0
+30  e0_avg_1940.nc  1940  ...         154.0          112.0
+31  e0_avg_1941.nc  1941  ...         154.0          112.0
+32  e0_avg_1942.nc  1942  ...         154.0          112.0
+33  e0_avg_1943.nc  1943  ...         154.0          112.0
+34  e0_avg_1944.nc  1944  ...         154.0          112.0
+35  e0_avg_1945.nc  1945  ...         154.0          112.0
+36  e0_avg_1946.nc  1946  ...         154.0          112.0
+37  e0_avg_1947.nc  1947  ...         154.0          112.0
+38  e0_avg_1948.nc  1948  ...         154.0          112.0
+39  e0_avg_1949.nc  1949  ...         154.0          112.0
+40  e0_avg_1950.nc  1950  ...         154.0          112.0
+
+[40 rows x 13 columns]
+
+	19:21:41 PM INGESTION STARTED ----------------------------- 
+
+	19:21:41 PM
+	YEAR: 1911
+
+	00:00:06 - 'e0_avg_1911.nc' Extracted from NetCDF
+	00:05:12 - Written to CSV
+	00:06:32 - Null values amended
+
+	19:28:14 PM
+	YEAR: 1912
+
+	00:06:39 - 'e0_avg_1912.nc' Extracted from NetCDF
+	00:12:00 - Written to CSV
+	00:13:16 - Null values amended
+
+	19:34:57 PM
+	YEAR: 1913
+
+	00:13:24 - 'e0_avg_1913.nc' Extracted from NetCDF
+	00:18:40 - Written to CSV
+	00:19:59 - Null values amended
+
+	19:41:40 PM
+	YEAR: 1914
+
+	00:20:06 - 'e0_avg_1914.nc' Extracted from NetCDF
+	00:25:14 - Written to CSV
+	00:26:38 - Null values amended
+
+	19:48:19 PM
+	YEAR: 1915
+
+	00:26:45 - 'e0_avg_1915.nc' Extracted from NetCDF
+	00:31:51 - Written to CSV
+	00:33:16 - Null values amended
+
+	19:54:57 PM
+	YEAR: 1916
+
+	00:33:23 - 'e0_avg_1916.nc' Extracted from NetCDF
+	00:37:59 - Written to CSV
+	00:39:13 - Null values amended
+
+	20:00:54 PM
+	YEAR: 1917
+
+	00:39:19 - 'e0_avg_1917.nc' Extracted from NetCDF
+	00:43:25 - Written to CSV
+	00:44:37 - Null values amended
+
+	20:06:18 PM
+	YEAR: 1918
+
+	00:44:43 - 'e0_avg_1918.nc' Extracted from NetCDF
+	00:48:49 - Written to CSV
+	00:49:59 - Null values amended
+
+	20:11:41 PM
+	YEAR: 1919
+
+	00:50:05 - 'e0_avg_1919.nc' Extracted from NetCDF
+	00:54:07 - Written to CSV
+	00:55:13 - Null values amended
+
+	20:16:54 PM
+	YEAR: 1920
+
+	00:55:19 - 'e0_avg_1920.nc' Extracted from NetCDF
+	00:59:24 - Written to CSV
+	01:00:30 - Null values amended
+
+	20:22:11 PM
+	YEAR: 1921
+
+	01:00:36 - 'e0_avg_1921.nc' Extracted from NetCDF
+	01:04:42 - Written to CSV
+	01:05:47 - Null values amended
+
+	20:27:29 PM
+	YEAR: 1922
+
+	01:05:54 - 'e0_avg_1922.nc' Extracted from NetCDF
+	01:09:59 - Written to CSV
+	01:11:04 - Null values amended
+
+	20:32:46 PM
+	YEAR: 1923
+
+	01:11:11 - 'e0_avg_1923.nc' Extracted from NetCDF
+	01:15:14 - Written to CSV
+	01:16:20 - Null values amended
+
+	20:38:01 PM
+	YEAR: 1924
+
+	01:16:26 - 'e0_avg_1924.nc' Extracted from NetCDF
+	01:20:31 - Written to CSV
+	01:21:40 - Null values amended
+
+	20:43:21 PM
+	YEAR: 1925
+
+	01:21:46 - 'e0_avg_1925.nc' Extracted from NetCDF
+	01:25:51 - Written to CSV
+	01:27:00 - Null values amended
+
+	20:48:41 PM
+	YEAR: 1926
+
+	01:27:06 - 'e0_avg_1926.nc' Extracted from NetCDF
+	01:31:11 - Written to CSV
+	01:32:20 - Null values amended
+
+	20:54:01 PM
+	YEAR: 1927
+
+	01:32:26 - 'e0_avg_1927.nc' Extracted from NetCDF
+	01:36:29 - Written to CSV
+	01:37:37 - Null values amended
+
+	20:59:18 PM
+	YEAR: 1928
+
+	01:37:43 - 'e0_avg_1928.nc' Extracted from NetCDF
+	01:41:46 - Written to CSV
+	01:43:17 - Null values amended
+
+	21:04:59 PM
+	YEAR: 1929
+
+	01:43:23 - 'e0_avg_1929.nc' Extracted from NetCDF
+	01:47:27 - Written to CSV
+	01:48:58 - Null values amended
+
+	21:10:39 PM
+	YEAR: 1930
+
+	01:49:04 - 'e0_avg_1930.nc' Extracted from NetCDF
+	01:53:07 - Written to CSV
+	01:54:38 - Null values amended
+
+	21:16:19 PM
+	YEAR: 1931
+
+	01:54:44 - 'e0_avg_1931.nc' Extracted from NetCDF
+	01:58:50 - Written to CSV
+	02:00:19 - Null values amended
+
+	21:22:00 PM
+	YEAR: 1932
+
+	02:00:25 - 'e0_avg_1932.nc' Extracted from NetCDF
+	02:04:29 - Written to CSV
+	02:05:51 - Null values amended
+
+	21:27:33 PM
+	YEAR: 1933
+
+	02:05:58 - 'e0_avg_1933.nc' Extracted from NetCDF
+	02:10:05 - Written to CSV
+	02:11:28 - Null values amended
+
+	21:33:10 PM
+	YEAR: 1934
+
+	02:11:35 - 'e0_avg_1934.nc' Extracted from NetCDF
+	02:15:39 - Written to CSV
+	02:17:03 - Null values amended
+
+	21:38:44 PM
+	YEAR: 1935
+
+	02:17:09 - 'e0_avg_1935.nc' Extracted from NetCDF
+	02:21:15 - Written to CSV
+	02:22:38 - Null values amended
+
+	21:44:20 PM
+	YEAR: 1936
+
+	02:22:44 - 'e0_avg_1936.nc' Extracted from NetCDF
+	02:26:49 - Written to CSV
+	02:27:53 - Null values amended
+
+	21:49:34 PM
+	YEAR: 1937
+
+	02:27:59 - 'e0_avg_1937.nc' Extracted from NetCDF
+	02:32:06 - Written to CSV
+	02:33:10 - Null values amended
+
+	21:54:51 PM
+	YEAR: 1938
+
+	02:33:16 - 'e0_avg_1938.nc' Extracted from NetCDF
+	02:37:24 - Written to CSV
+	02:38:31 - Null values amended
+
+	22:00:12 PM
+	YEAR: 1939
+
+	02:38:37 - 'e0_avg_1939.nc' Extracted from NetCDF
+	02:42:46 - Written to CSV
+	02:43:55 - Null values amended
+
+	22:05:36 PM
+	YEAR: 1940
+
+	02:44:01 - 'e0_avg_1940.nc' Extracted from NetCDF
+	02:48:10 - Written to CSV
+	02:49:18 - Null values amended
+
+	22:10:59 PM
+	YEAR: 1941
+
+	02:49:24 - 'e0_avg_1941.nc' Extracted from NetCDF
+	02:53:33 - Written to CSV
+	02:55:08 - Null values amended
+
+	22:16:49 PM
+	YEAR: 1942
+
+	02:55:14 - 'e0_avg_1942.nc' Extracted from NetCDF
+	02:59:24 - Written to CSV
+	03:01:01 - Null values amended
+
+	22:22:42 PM
+	YEAR: 1943
+
+	03:01:07 - 'e0_avg_1943.nc' Extracted from NetCDF
+	03:05:16 - Written to CSV
+	03:06:52 - Null values amended
+
+	22:28:33 PM
+	YEAR: 1944
+
+	03:06:58 - 'e0_avg_1944.nc' Extracted from NetCDF
+	03:11:08 - Written to CSV
+	03:12:44 - Null values amended
+
+	22:34:25 PM
+	YEAR: 1945
+
+	03:12:50 - 'e0_avg_1945.nc' Extracted from NetCDF
+	03:17:00 - Written to CSV
+	03:18:37 - Null values amended
+
+	22:40:19 PM
+	YEAR: 1946
+
+	03:18:44 - 'e0_avg_1946.nc' Extracted from NetCDF
+	03:23:10 - Written to CSV
+	03:24:57 - Null values amended
+
+	22:46:38 PM
+	YEAR: 1947
+
+	03:25:04 - 'e0_avg_1947.nc' Extracted from NetCDF
+	03:29:37 - Written to CSV
+	03:31:15 - Null values amended
+
+	22:52:57 PM
+	YEAR: 1948
+
+	03:31:23 - 'e0_avg_1948.nc' Extracted from NetCDF
+	03:35:49 - Written to CSV
+	03:37:27 - Null values amended
+
+	22:59:09 PM
+	YEAR: 1949
+
+	03:37:34 - 'e0_avg_1949.nc' Extracted from NetCDF
+	03:42:06 - Written to CSV
+	03:43:44 - Null values amended
+
+	23:05:26 PM
+	YEAR: 1950
+
+	03:43:52 - 'e0_avg_1950.nc' Extracted from NetCDF
+	03:48:18 - Written to CSV
+	03:49:44 - Null values amended
+	23:11:25 PM INGESTION COMPLETE -----------------------------
